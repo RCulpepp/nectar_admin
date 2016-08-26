@@ -1,0 +1,72 @@
+<div class='pure-g' id='order-form'>
+	<div ng-controller='ordersController' class='pure-u-1 pure-g ng-init: dashboard(displayedOrders)'>
+		<div class='pure-u-3-4'>
+			<h3 class='pure-u-1'>Orders</h3>
+			<table class='pure-table pure-table-striped pure-table-bordered'>
+				<thead>
+					<tr>
+						<td>Customer</td>
+						<td>Address</td>
+						<td>Email</td>
+						<td>Delivery Date</td>
+						<td>Delivery Time</td>
+						<td>Product</td>
+						<td>Quantity</td>
+						<td>Total Price</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='order in orders'>
+						<td>{{ order.first_name }} {{order.last_name}}</td>
+						<td ng-repeat='address in order.address'>
+							<p>{{ address.street1 }}</p>
+							<p>{{ address.street2 }}</p>
+							<p>{{ address.city }}, {{ address.state }} {{ address.zip }}</p>
+						</td>
+						<td>{{order.receipt_email }}</td>
+						<td>{{ order.delivery_date }}</td>
+						<td>{{ order.delivery_time }}</td>
+						<td>{{ order._product }}</td>
+						<td>{{ order.quantity }} oz.</td>
+						<td>{{ (order.quantity * 2.99).toFixed(2) }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class='pure-u-1-4 pure-button' ng-click='dashboard(displayedOrders)'>Show More</button>
+		</div>
+		<div class='pure-u-1-4 pure-g' id='products'>
+			<h3 class='pure-u-2-3'>Products</h3>
+			<button class='pure-button pure-button-primary pure-u-1-4' ng-click='newProduct()'>+</button>
+			<table class='pure-table pure-table-striped pure-table-bordered'>
+				<thead>
+					<tr>
+						<td>Product</td>
+						<td>Current Quantity</td>
+						<td>Price/oz.</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='product in products'>
+						<td>{{ product.name }}</td>
+						<td>{{ product.unit_qty }}</td>
+						<td>{{ product.unit_price/100 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<form class='pure-u-1-4 pure-form' id='new-product' ng-submit="createProduct()" ng-show='productForm'>
+			<div>
+				<p ng-repeat='error in prodErrs' class='error'>{{ error }}</p>
+			</div>
+			<label for="name">Product Name:</label>
+			<input type="text" name="name" ng-model='name'>
+			<label for="qty">Quantity (oz.)</label>
+			<input type="text" name="qty" ng-model='qty'>
+			<label for="price">Unit Price:</label>
+			<input type="text" name="price" ng-model='price'>
+			<br>
+			<input type="submit" class='pure-button' value='Add'>
+			<button type='button' class='pure-button' ng-click='newProduct()'>Cancel</button>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div class='pure-g' id="order-form">
+	<form class='pure-u-1-2 pure-form pure-form-aligned' id='form-page' ng-submit='create()'>
+		<div class='errors'>
+			<p class='error' ng-repeat='error in errors'>{{  error }}</p>
+		</div>
+		<div class='pure-control-group'>
+			<label for='first_name'>First Name:</label>
+			<input type="text" name="first_name" ng-model='first_name'>
+		</div>
+		<div class='pure-control-group'>
+			<label for='last_name'>Last Name:</label>
+			<input type="text" name="last_name" ng-model='last_name'>
+		</div>
+		<div class='pure-control-group'>
+			<label for='email'>Email:</label>
+			<input type="email" name="email" ng-model='email'>
+		</div>
+		<div class='pure-control-group'>
+			<label for='password'>Password:</label>
+			<input type="password" name="password" ng-model='password'>
+		</div>
+		<div class='pure-control-group'>
+			<label for='confirm_password'>Password:</label>
+			<input type="password" name="confirm_password" ng-model='confirm_password'>
+			
+		</div>
+		<div class='pure-controls'>
+			<a href='/#/dashboard' class='pure-button'>Back</a>
+			<input type="submit" class='pure-button pure-button-primary' value='Add Admin'>
+		</form>
+	</form>
+</div>
